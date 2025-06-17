@@ -1,3 +1,3 @@
-frist_name="Ramida"
+frist_name="Ramida "
 last_name="Kamonrak"
-print(frist_name+" "+last_name+"\n")
+print(frist_name+last_name+"\n")
