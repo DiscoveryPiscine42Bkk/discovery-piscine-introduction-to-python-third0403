@@ -23,33 +23,31 @@ def addTask():
   date = input("ป้อนวันที่ (dd/mm/yyyy): ")
   types = input("ประเภทงาน (พืชผัก/ปศุสัตว์/อื่นๆ): ")
 
-  Tasks.append(
-    {
-    "task": task, 
-     "date": date, 
-     "types": types
-    }
-  )
-  
+  Tasks.append({"task": task, "date": date, "types": types})
+
   print("เพิ่มงานสำเร็จ")
   refresh()
 
-
+#-----------> แก้ไขเรียบร้อยแล้วค่ะ
 def showTask():
 
-  if len(Tasks) > 0:
-    print("รายการงานทั้งหมด")
-    for i in range(len(Tasks)):
-      jsonData = Tasks[i]
-      print(
-          f"{i+1}. {jsonData['date']} - {jsonData['task']} ({jsonData['types']})"
-      )
+  while True:
+    if len(Tasks) > 0:
+      print("รายการงานทั้งหมด")
+      for i in range(len(Tasks)):
+        jsonData = Tasks[i]
+        print(
+            f"{i+1}. {jsonData['date']} - {jsonData['task']} ({jsonData['types']})"
+        )
 
-  
+    else:
+      print("⚠ ยังไม่มีงานในรายการ")
+      refresh()
 
-  else:
-    print("⚠ ยังไม่มีงานในรายการ")
-    refresh()
+    print("\nกด Enter เพื่อกลับสู่เมนูหลัก")
+    x = input(">>")
+    if x == "":
+      refresh()
 
 
 def deleteTask():
@@ -59,7 +57,7 @@ def deleteTask():
     removed = Tasks.pop(index - 1)
     print(f"ลบงาน : {removed['task']} แล้ว")
     refresh()
-    
+
   else:
     print("⚠ ยังไม่มีงานในรายการ")
     refresh()
@@ -78,10 +76,11 @@ def sumTask():
 
     for key, value in types.items():
       print(f"- {key} : {value} งาน")
-      
+
   else:
     print("⚠ ยังไม่มีงานในรายการ")
     refresh()
+
 
 def mainsys():
   selectMain()
@@ -91,6 +90,7 @@ def mainsys():
     addTask()
   elif x == "2":
     showTask()
+
   elif x == "3":
     deleteTask()
   elif x == "4":
@@ -100,12 +100,11 @@ def mainsys():
     print("🤝 ขอบคุณที่ใช้โปรแกรม Smart Farm")
     exit()
 
-  
-
 
 def refresh():
   time.sleep(timer)
   os.system("clear")
+
   mainsys()
 
 
